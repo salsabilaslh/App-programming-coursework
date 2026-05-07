@@ -8,24 +8,36 @@ Create virtual environment:
 
 ```bash
 python -m venv .venv
+```
 
-## Activate virtual environment:
+## Activate virtual environment
 
+```bash
 .venv\Scripts\activate
+```
 
-## Install dependencies:
+## Install dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
-## Open in browser:
+## Run server
+
+```bash
+uvicorn main:app --reload
+```
+
+## Open in browser
 
 http://127.0.0.1:8000
 
-## Swagger Docs:
+## Swagger Docs
 
 http://127.0.0.1:8000/docs
 
 ## Technologies
-Python 3.11.9
-FastAPI
-Uvicorn
+
+- Python 3.11.9
+- FastAPI
+- Uvicorn
