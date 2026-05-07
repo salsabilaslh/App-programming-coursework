@@ -10,7 +10,7 @@ async def root():
 @app.get("/about")
 async def about():
     return {
-        "name": "Salsa",
+        "name": "shaza",
         "time": datetime.now()
     }
 
@@ -29,3 +29,15 @@ async def set_example():
     return {
         "tags": tags
     }
+
+@app.post("/create")
+async def create_item():
+    return {"message": "Item created"}
+
+@app.put("/update")
+async def update_item():
+    return {"message": "Item updated"}
+
+@app.delete("/delete")
+async def delete_item():
+    return {"message": "Item deleted"}
