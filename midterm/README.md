@@ -42,3 +42,14 @@ The system collects quote data, stores it in a database, provides CRUD APIs, and
 Hugging Face Space:
 
 https://huggingface.co/spaces/salsabilaslh/app.project
+
+## API Documentation
+
+FastAPI Swagger UI for CRUD operations:
+
+- Create Quote
+- Read Quote
+- Update Quote
+- Delete Quote
+
+![Swagger UI Screenshot](fastAPI.png)
