@@ -9,23 +9,23 @@ Create virtual environment:
 ```bash
 python -m venv .venv
 
-Activate virtual environment:
+## Activate virtual environment:
 
 .venv\Scripts\activate
 
-Install dependencies:
+## Install dependencies:
 
 pip install -r requirements.txt
 
-Open in browser:
+## Open in browser:
 
 http://127.0.0.1:8000
 
-Swagger Docs:
+## Swagger Docs:
 
 http://127.0.0.1:8000/docs
 
-Technologies
+## Technologies
 Python 3.11.9
 FastAPI
 Uvicorn
