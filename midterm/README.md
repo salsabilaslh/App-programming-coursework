@@ -37,11 +37,11 @@ The system collects quote data, stores it in a database, provides CRUD APIs, and
 
 ---
 
-# Deployment
+## User Interface
 
-Hugging Face Space:
+Interactive Gradio-based web interface for quote exploration, translation, and analysis.
 
-https://huggingface.co/spaces/salsabilaslh/app.project
+![Main UI](UI.png)
 
 ## API Documentation
 
@@ -53,3 +53,11 @@ FastAPI Swagger UI for CRUD operations:
 - Delete Quote
 
 ![Swagger UI Screenshot](fastAPI.png)
+
+---
+
+# Deployment
+
+Hugging Face Space:
+
+https://huggingface.co/spaces/salsabilaslh/app.project
