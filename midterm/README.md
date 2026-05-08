@@ -7,6 +7,7 @@ Quotes Analysis Dashboard is an interactive web application for exploring, trans
 This project was developed using:
 
 - Gradio
+- FastAPI
 - SQLite3
 - Pandas
 - Matplotlib
@@ -30,6 +31,7 @@ The system provides multilingual translation, quote analytics, visualization cha
 - Random quote generator
 - Automatic quote dataset collection
 - SQLite database integration
+- FastAPI CRUD API
 - Interactive Gradio web UI
 - Hugging Face deployment
 
@@ -39,10 +41,13 @@ The system provides multilingual translation, quote analytics, visualization cha
 
 | File | Description |
 |---|---|
-| `app.py` | Main Gradio dashboard application |
-| `quotes.db` | SQLite database |
+| `app.py` | Main application entry point |
+| `ui.py` | Gradio dashboard user interface |
+| `main.py` | FastAPI CRUD API |
+| `crawler.py` | Automatic quote data collection |
+| `database.py` | SQLite database creation and management |
+| `quotes.db` | SQLite database file |
 | `requirements.txt` | Required Python packages |
-| `UI.png` | Main dashboard screenshot |
 
 ---
 
@@ -85,6 +90,7 @@ https://huggingface.co/spaces/salsabilaslh/app.project
 
 - Python
 - Gradio
+- FastAPI
 - SQLite3
 - Pandas
 - Matplotlib
