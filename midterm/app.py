@@ -4,20 +4,6 @@ import os
 import requests
 import pandas as pd
 
-from fastapi import FastAPI
-from gradio import mount_gradio_app
-
-css = """
-.gradio-container {
-    max-width: 800px;
-    margin: auto;
-}
-button {
-    border-radius: 8px !important;
-    font-weight: 500;
-}
-"""
-
 DB_PATH = os.path.join(os.path.dirname(__file__), "quotes.db")
 
 # =========================
@@ -163,76 +149,11 @@ def count_words(text):
         return 0
 
     return f"{len(text.split())} words"
-    
-# =========================
-# FASTAPI CRUD
-# =========================
-fastapi_app = FastAPI()
-
-@fastapi_app.post("/quotes")
-def create_quote(text: str, author: str):
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-
-    cursor.execute(
-        "INSERT INTO quotes (text, author) VALUES (?, ?)",
-        (text, author)
-    )
-    conn.commit()
-    conn.close()
-
-    return {"message": "Quote added"}
-
-@fastapi_app.put("/quotes/{quote_id}")
-def update_quote(quote_id: int, text: str, author: str):
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-
-    cursor.execute(
-        "UPDATE quotes SET text=?, author=? WHERE id=?",
-        (text, author, quote_id)
-    )
-    conn.commit()
-    conn.close()
-
-    return {"message": "Quote updated"}
-
-@fastapi_app.delete("/quotes/{quote_id}")
-def delete_quote(quote_id: int):
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-
-    cursor.execute("DELETE FROM quotes WHERE id=?", (quote_id,))
-    conn.commit()
-    conn.close()
-
-    return {"message": "Quote deleted"}
-
-def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-@fastapi_app.get("/api")
-def root():
-    return {"message": "Quotes API is running"}
-
-@fastapi_app.get("/quotes")
-def get_quotes_api():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    cursor.execute("SELECT * FROM quotes")
-    rows = cursor.fetchall()
-
-    conn.close()
-
-    return [dict(row) for row in rows]
 
 # =========================
 # UI
 # =========================
-with gr.Blocks() as ui:
+with gr.Blocks() as app:
     gr.Markdown("# Global Quotes Insight Platform")
     gr.Markdown("A multilingual quote analysis platform featuring real-time translation, word analysis, and interactive data visualization.")
 
@@ -241,6 +162,7 @@ with gr.Blocks() as ui:
         gr.Markdown("### Quotes List")
             
         table = gr.Dataframe(
+            value=get_quotes(),
             headers=["id", "text", "author"],
             interactive=False,
             row_count=(50, "dynamic")
@@ -312,17 +234,5 @@ with gr.Blocks() as ui:
         btn2 = gr.Button("Word Count")
         btn2.click(word_count, outputs=output2)
 
-app = mount_gradio_app(
-    fastapi_app,
-    ui,
-    path="/"
-)
 
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=7860
-    )
+app.launch()
