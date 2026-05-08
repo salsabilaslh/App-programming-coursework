@@ -59,7 +59,7 @@ FastAPI Swagger UI for CRUD operations:
 # Deployment
 
 ### MAIN UI
-https://salsabilaslh-app-project.hf.space/quotes
+https://huggingface.co/spaces/salsabilaslh/app.project
 
 ### FASTAPI DOCS
 https://salsabilaslh-app-project.hf.space/docs
